@@ -21,20 +21,26 @@
 .logo {
 }
 
+.search,
+.search-result {
+    width: 361px;
+
+}
 .search {
     position: relative;
-    width: 361px;
     height: 46px;
     padding-left: 16px;
     background-color: rgba(22, 24, 35, 0.06);
     border-radius: var(--search-border-radius);
     display: flex;
     border: 1.5px solid transparent;
+    font-size: 1.8rem;
 
     input {
         flex: 1;
         height: 100%;
         background-color: transparent;
+        font-size: 1.6rem;
     }
 
     input:not(:placeholder-shown) ~ .search-btn {
@@ -57,6 +63,15 @@
     }
 }
 
+.search-result {
+    // padding-top: 8px;
+}
+
+.search-title {
+    color:rgba(22, 24, 35, 0.5);
+    font-size: 1.4rem;
+ padding: 6px 14px;
+}
 
 .loading,
 .search-clear {
@@ -65,6 +80,7 @@
     top: 50%;
     transform: translateY(-50%);
     right: 68px;
+    font-size: 1.8rem;
 }
 
 .search-btn {
