@@ -31,9 +31,8 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faLanguage} />,
         title: 'Tiếng Việt',
-        children: {
-            title: 'Language',
-            data: [
+        children: 
+            [
                 {
                     code: 'en',
                     title: 'English',
@@ -43,7 +42,6 @@ const MENU_ITEMS = [
                     title: 'Tiếng Việt',
                 },
             ],
-        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,

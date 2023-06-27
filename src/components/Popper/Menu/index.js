@@ -10,12 +10,12 @@ const cx = classNames.bind(styles);
 const defaultfn = () => {};
 
 function Menu({ children, items, onChange = defaultfn }) {
-    const [history, setHistory] = useState([{ data: items }]);
+    const [history, setHistory] = useState([items ]);
     const current = history[history.length - 1];
     console.log(history);
 
     const renderItems = () => {
-        return current.data.map((item, index) => {
+        return current.map((item, index) => {
             const isParent = !!item.children;
 
             return (
@@ -34,7 +34,7 @@ function Menu({ children, items, onChange = defaultfn }) {
 
     return (
         <Tippy
-        visible
+        
             offset={[14, 8]}
             interactive // cho phep select
             delay={[0, 300]}
