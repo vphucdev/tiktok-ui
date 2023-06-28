@@ -12,7 +12,6 @@ const defaultfn = () => {};
 function Menu({ children, items, onChange = defaultfn }) {
     const [history, setHistory] = useState([items ]);
     const current = history[history.length - 1];
-    console.log(history);
 
     const renderItems = () => {
         return current.map((item, index) => {

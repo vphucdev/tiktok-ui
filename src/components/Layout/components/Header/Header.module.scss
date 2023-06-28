@@ -104,6 +104,7 @@
     }
 }
 
+// Actions
 .actions {
     display: flex;
     align-items: center;
@@ -116,6 +117,8 @@
     width: 32px;
     margin-right: 16px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 .more-btn {

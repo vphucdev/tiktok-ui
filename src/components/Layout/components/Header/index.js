@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCircleQuestion,
     faCircleXmark,
-    faCloudArrowUp,
     faEllipsisVertical,
     faGear,
     faLanguage,
@@ -23,25 +22,26 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
-import { faBookmark, faKeyboard, faMessage, faPaperPlane, faUser } from '@fortawesome/free-regular-svg-icons';
+import { faBookmark, faKeyboard, faMessage, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faTiktok } from '@fortawesome/free-brands-svg-icons';
+import { MessageIcon, UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faLanguage} />,
         title: 'Tiếng Việt',
-        children: 
-            [
-                {
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-            ],
+        children: [
+            {
+                code: 'en',
+                title: 'English',
+            },
+            {
+                code: 'vi',
+                title: 'Tiếng Việt',
+            },
+        ],
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -80,8 +80,8 @@ const userMenu = [
         icon: <FontAwesomeIcon icon={faSignOut} />,
         title: 'Đăng xuất',
         to: '/logout',
-        separate: true
-    }
+        separate: true,
+    },
 ];
 
 function Header() {
@@ -138,12 +138,12 @@ function Header() {
                         <>
                             <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudArrowUp} />
+                                    <UploadIcon />
                                 </button>
                             </Tippy>
 
                             <button className={cx('action-btn')}>
-                                <FontAwesomeIcon icon={faPaperPlane} />
+                                <MessageIcon />
                             </button>
                             <button className={cx('action-btn')}>
                                 <FontAwesomeIcon icon={faMessage} />
@@ -159,10 +159,11 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/ba344ed4d8ac73f03b9390eb952ba2fa~c5_100x100.jpeg?x-expires=1687921200&x-signature=2zpOnzeAfbnTe8gekVVk9cqpltE%3D"
                                 alt="Name User"
+                                // fallback='https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png'
                             />
                         ) : (
                             <button className={cx('more-btn')}>
