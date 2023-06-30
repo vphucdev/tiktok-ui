@@ -19,6 +19,8 @@
         background-color: transparent;
         font-size: 1.6rem;
         caret-color: var(--primary-color);
+        font-family: 'ProximaNova', sans-serif;
+
     }
 
     input:not(:placeholder-shown) ~ .search-btn {

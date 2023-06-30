@@ -15,9 +15,9 @@ import styles from './Header.module.scss';
 import logo from '~/assets/images/logo.svg';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
-import { faBookmark, faKeyboard, faMessage, faUser } from '@fortawesome/free-regular-svg-icons';
+import { faBookmark, faKeyboard, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faTiktok } from '@fortawesome/free-brands-svg-icons';
-import { MessageIcon, UploadIcon } from '~/components/Icons';
+import { Inbox, MessageIcon, UploadIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../Search';
 
@@ -101,12 +101,18 @@ function Header() {
                                 </button>
                             </Tippy>
 
-                            <button className={cx('action-btn')}>
-                                <MessageIcon />
-                            </button>
-                            <button className={cx('action-btn')}>
-                                <FontAwesomeIcon icon={faMessage} />
-                            </button>
+                            <Tippy delay={[0, 50]} content="Message" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+
+                            <Tippy delay={[0, 50]} content="Inbox" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <Inbox />
+                                    <span className={cx('badge')}>12</span>
+                                </button>
+                            </Tippy>
                         </>
                     ) : (
                         <>
