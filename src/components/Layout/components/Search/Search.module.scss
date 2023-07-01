@@ -56,7 +56,25 @@
     top: 50%;
     transform: translateY(-50%);
     right: 68px;
-    font-size: 1.8rem;
+    // font-size: 1.8rem;
+}
+
+.search-clear {
+    width: 1.8rem;
+}
+
+.loading {
+    animation: spiner 0.5s linear infinite;
+}
+
+@keyframes spiner {
+    from {
+        transform: translateY(-50%) rotate(0);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+
 }
 
 .search-btn {
