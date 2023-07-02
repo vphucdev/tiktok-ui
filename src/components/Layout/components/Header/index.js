@@ -126,7 +126,7 @@ function Header() {
                         {currentUser ? (
                             <Image
                                 className={cx('user-avatar')}
-                                src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/ba344ed4d8ac73f03b9390eb952ba2fa~c5_100x100.jpeg?x-expires=1687921200&x-signature=2zpOnzeAfbnTe8gekVVk9cqpltE%3D"
+                                src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
                                 alt="Name User"
                                 // fallback='https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png'
                             />
