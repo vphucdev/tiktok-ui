@@ -10,6 +10,7 @@ import {
     faSignIn,
     faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 import styles from './Header.module.scss';
 import logo from '~/assets/images/logo.svg';
@@ -88,7 +89,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img className={cx('logo')} src={logo} alt="logo" />
+                <Link to='/' className={cx('logo')}>
+                    <img  src={logo} alt="logo" />
+                </Link>
 
                 <Search />
 
