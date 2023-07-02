@@ -28,18 +28,22 @@ function Search() {
 
         setLoading(true);
 
-        request
-            .get('/users/search', {
-                params: {
-                    q: debounced,
-                    type: 'less',
-                },
-            })
-            .then((res) => {
+        const fetchApi = async () => {
+            try {
+                const res = await request.get('/users/search', {
+                    params: {
+                        q: debounced,
+                        type: 'less',
+                    },
+                });
                 setSearchResult(res.data);
                 setLoading(false);
-            })
-            .catch(() => setLoading(false));
+            } catch (error) {
+                setLoading(false);
+            }
+        };
+
+        fetchApi();
     }, [debounced]);
 
     const handleClear = () => {
