@@ -3,12 +3,11 @@ import classNames from 'classnames/bind';
 import { useEffect, useRef, useState } from 'react';
 
 import { useDebounce } from '~/hooks';
-
+import * as searchServices from '~/apiServices/searchService';
 import styles from './Search.module.scss';
 import AccountItem from '~/components/AccountItem';
 import { ClearIcon, LoadingIcon, SearchIcon } from '~/components/Icons';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import request from '~/utils/request';
 
 const cx = classNames.bind(styles);
 function Search() {
@@ -26,21 +25,12 @@ function Search() {
             return;
         }
 
-        setLoading(true);
-
         const fetchApi = async () => {
-            try {
-                const res = await request.get('/users/search', {
-                    params: {
-                        q: debounced,
-                        type: 'less',
-                    },
-                });
-                setSearchResult(res.data);
-                setLoading(false);
-            } catch (error) {
-                setLoading(false);
-            }
+            setLoading(true);
+
+            const results = await searchServices.search(debounced);
+            setSearchResult(results);
+            setLoading(false);
         };
 
         fetchApi();
