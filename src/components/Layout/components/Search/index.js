@@ -8,7 +8,7 @@ import styles from './Search.module.scss';
 import AccountItem from '~/components/AccountItem';
 import { ClearIcon, LoadingIcon, SearchIcon } from '~/components/Icons';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import request from '~/utils/request';
+import * as request from '~/utils/request';
 
 const cx = classNames.bind(styles);
 function Search() {
@@ -36,7 +36,7 @@ function Search() {
                 },
             })
             .then((res) => {
-                setSearchResult(res.data.data);
+                setSearchResult(res.data);
                 setLoading(false);
             })
             .catch(() => setLoading(false));
