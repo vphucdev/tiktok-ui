@@ -43,47 +43,50 @@ function Search() {
     };
 
     return (
-        <HeadlessTippy
-            offset={[0, 6]}
-            placement="bottom"
-            interactive // cho phep select
-            visible={showResult && searchResult.length > 0}
-            render={(attrs) => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
-                        <h4 className={cx('search-title')}>Account</h4>
-                        {searchResult.map((result) => (
-                            <AccountItem key={result.id} data={result} />
-                        ))}
-                    </PopperWrapper>
-                </div>
-            )}
-            onClickOutside={() => setShowResult(false)}
-        >
-            <div className={cx('search')}>
-                <input
-                    ref={inputRef}
-                    value={searchValue}
-                    onFocus={() => setShowResult(true)}
-                    onChange={(e) => {
-                        if (!e.target.value.startsWith(' ')) {
-                            setSearchValue(e.target.value);
-                        }
-                    }}
-                    placeholder="Tìm kiếm"
-                    spellCheck={false}
-                />
-                {!!searchValue && !loading && (
-                    <button className={cx('search-clear')} onClick={handleClear}>
-                        <ClearIcon />
-                    </button>
+        //Using a wrapper <div> tag to fix warning Tippy
+        <div>
+            <HeadlessTippy
+                offset={[0, 6]}
+                placement="bottom"
+                interactive // cho phep select
+                visible={showResult && searchResult.length > 0}
+                render={(attrs) => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <PopperWrapper>
+                            <h4 className={cx('search-title')}>Account</h4>
+                            {searchResult.map((result) => (
+                                <AccountItem key={result.id} data={result} />
+                            ))}
+                        </PopperWrapper>
+                    </div>
                 )}
-                {loading && <LoadingIcon className={cx('loading')} />}
-                <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
-                    <SearchIcon />
-                </button>
-            </div>
-        </HeadlessTippy>
+                onClickOutside={() => setShowResult(false)}
+            >
+                <div className={cx('search')}>
+                    <input
+                        ref={inputRef}
+                        value={searchValue}
+                        onFocus={() => setShowResult(true)}
+                        onChange={(e) => {
+                            if (!e.target.value.startsWith(' ')) {
+                                setSearchValue(e.target.value);
+                            }
+                        }}
+                        placeholder="Tìm kiếm"
+                        spellCheck={false}
+                    />
+                    {!!searchValue && !loading && (
+                        <button className={cx('search-clear')} onClick={handleClear}>
+                            <ClearIcon />
+                        </button>
+                    )}
+                    {loading && <LoadingIcon className={cx('loading')} />}
+                    <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+                        <SearchIcon />
+                    </button>
+                </div>
+            </HeadlessTippy>
+        </div>
     );
 }
 
