@@ -20,7 +20,7 @@
         font-size: 1.6rem;
         caret-color: var(--primary-color);
         font-family: var(--font-family);
-
+        padding-right: 48px;
     }
 
     input:not(:placeholder-shown) ~ .search-btn {
@@ -56,11 +56,10 @@
     top: 50%;
     transform: translateY(-50%);
     right: 68px;
-    // font-size: 1.8rem;
 }
 
 .search-clear {
-    width: 1.8rem;
+    height: 18px;
 }
 
 .loading {
@@ -74,7 +73,6 @@
     to {
         transform: translateY(-50%) rotate(360deg);
     }
-
 }
 
 .search-btn {
