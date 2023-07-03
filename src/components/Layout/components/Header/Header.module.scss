@@ -2,8 +2,13 @@
     width: 100%;
     height: var(--default-layout-header-height);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 1px;
+    background-color: var(--white);
     display: flex;
     justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10;
 }
 
 .inner {
