@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import { useEffect, useRef, useState } from 'react';
 
 import { useDebounce } from '~/hooks';
-import * as searchServices from '~/apiServices/searchService';
+import * as searchServices from '~/services/searchService';
 import styles from './Search.module.scss';
 import AccountItem from '~/components/AccountItem';
 import { ClearIcon, LoadingIcon, SearchIcon } from '~/components/Icons';
