@@ -8,6 +8,10 @@
     }
 }
 
+.menu-body {
+    overflow-y: auto;
+}
+
 // Menu Item
 .menu-item {
     font-size: 1.4rem;
@@ -33,6 +37,7 @@
     position: relative;
     height: 50px;
     margin-top: -8px;
+    flex-shrink: 0;
 }
 
 .back-btn {
