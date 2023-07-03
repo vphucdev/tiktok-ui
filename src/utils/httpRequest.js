@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const request = axios.create({
+const httpRequest = axios.create({
     baseURL: 'https://tiktok.fullstack.edu.vn/api/',
 });
 
-request.interceptors.response.use((response) => {
+httpRequest.interceptors.response.use((response) => {
     return response.data;
 });
 // cach khac
@@ -13,4 +13,4 @@ request.interceptors.response.use((response) => {
 //     return response.data;
 // };
 
-export default request;
+export default httpRequest;
