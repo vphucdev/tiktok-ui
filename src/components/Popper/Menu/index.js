@@ -9,8 +9,8 @@ import { useState } from 'react';
 const cx = classNames.bind(styles);
 const defaultfn = () => {};
 
-function Menu({ children, items, onChange = defaultfn }) {
-    const [history, setHistory] = useState([items ]);
+function Menu({ children, items, hideOnClick = false, onChange = defaultfn }) {
+    const [history, setHistory] = useState([items]);
     const current = history[history.length - 1];
 
     const renderItems = () => {
@@ -33,12 +33,12 @@ function Menu({ children, items, onChange = defaultfn }) {
 
     return (
         <Tippy
-        
             offset={[14, 8]}
             interactive // cho phep select
             delay={[0, 300]}
             placement="bottom-end"
             onHide={() => setHistory((prev) => prev.slice(0, 1))}
+            hideOnClick={hideOnClick}
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
