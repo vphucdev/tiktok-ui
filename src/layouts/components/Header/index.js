@@ -28,16 +28,19 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faLanguage} />,
         title: 'Tiếng Việt',
-        children: [
-            {
-                code: 'en',
-                title: 'English',
-            },
-            {
-                code: 'vi',
-                title: 'Tiếng Việt',
-            },
-        ],
+        children: {
+            title: 'language',
+            data: [
+                {
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -85,13 +88,13 @@ function Header() {
         console.log(menuItem);
     };
 
-    const currentUser = true;
+    const currentUser = false;
 
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <Link to={config.routes.home} className={cx('logo')}>
-                    <img  src={logo} alt="logo" />
+                    <img src={logo} alt="logo" />
                 </Link>
 
                 <Search />

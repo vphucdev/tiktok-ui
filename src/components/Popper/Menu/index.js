@@ -11,11 +11,11 @@ const cx = classNames.bind(styles);
 const defaultfn = () => {};
 
 function Menu({ children, items, hideOnClick = false, onChange = defaultfn }) {
-    const [history, setHistory] = useState([items]);
+    const [history, setHistory] = useState([{data: items}]);
     const current = history[history.length - 1];
 
     const renderItems = () => {
-        return current.map((item, index) => {
+        return current.data.map((item, index) => {
             const isParent = !!item.children;
 
             return (
@@ -45,7 +45,7 @@ function Menu({ children, items, hideOnClick = false, onChange = defaultfn }) {
                     <PopperWrapper>
                         {history.length > 1 && (
                             <Header
-                                title="Language"
+                                title={current.title}
                                 onBack={() => {
                                     setHistory((prev) => {
                                         return prev.slice(0, history.length - 1);
