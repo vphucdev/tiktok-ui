@@ -7,7 +7,7 @@ import image from '~/assets/images/no-image.png';
 
 const cx = classNames.bind(styles);
 
-function Image({ alt, src, className, fallback: customFallback = image, ...props }, ref) {
+const  Image = forwardRef(({ alt, src, className, fallback: customFallback = image, ...props }, ref) => {
     const [fallback, setFallback] = useState('');
     const handleError = () => {
         setFallback(customFallback);
@@ -25,7 +25,7 @@ function Image({ alt, src, className, fallback: customFallback = image, ...props
             onError={handleError}
         />
     );
-}
+})
 
 Image.propTypes = {
     alt: PropTypes.string,
@@ -34,4 +34,4 @@ Image.propTypes = {
     fallback: PropTypes.string,
 };
 
-export default forwardRef(Image);
+export default Image;
