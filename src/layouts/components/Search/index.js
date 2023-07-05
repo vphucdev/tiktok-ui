@@ -42,7 +42,7 @@ function Search() {
         inputRef.current.focus();
     };
 
-    const handleHideResult = () => setShowResult(false)
+    const handleHideResult = () => setShowResult(false);
 
     return (
         //Using a wrapper <div> tag to fix warning Tippy
@@ -57,7 +57,7 @@ function Search() {
                         <PopperWrapper>
                             <h4 className={cx('search-title')}>Account</h4>
                             {searchResult.map((result) => (
-                                <AccountItem key={result.id} data={result} />
+                                <AccountItem key={result.id} data={result} onClick={() => setSearchResult([])} />
                             ))}
                         </PopperWrapper>
                     </div>
