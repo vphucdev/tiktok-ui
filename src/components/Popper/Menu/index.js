@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 const defaultfn = () => {};
 
 function Menu({ children, items, hideOnClick = false, onChange = defaultfn }) {
-    const [history, setHistory] = useState([{data: items}]);
+    const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
 
     const renderItems = () => {
@@ -32,34 +32,37 @@ function Menu({ children, items, hideOnClick = false, onChange = defaultfn }) {
         });
     };
 
+    const handleBack = () => {
+        setHistory((prev) => {
+            return prev.slice(0, history.length - 1);
+            // const newHistory = [...history];
+            // newHistory.pop()
+            // return newHistory
+        });
+    };
+
+    const rederResult = (attrs) => (
+        <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+            <PopperWrapper>
+                {history.length > 1 && <Header title={current.title} onBack={handleBack} />}
+                <div className={cx('menu-body')}>{renderItems()}</div>
+            </PopperWrapper>
+        </div>
+    );
+
+    const handleResetMenu = () => {
+        setHistory((prev) => prev.slice(0, 1));
+    };
+
     return (
         <Tippy
             offset={[14, 8]}
             interactive // cho phep select
             delay={[0, 300]}
             placement="bottom-end"
-            onHide={() => setHistory((prev) => prev.slice(0, 1))}
+            onHide={handleResetMenu}
             hideOnClick={hideOnClick}
-            render={(attrs) => (
-                <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
-                        {history.length > 1 && (
-                            <Header
-                                title={current.title}
-                                onBack={() => {
-                                    setHistory((prev) => {
-                                        return prev.slice(0, history.length - 1);
-                                        // const newHistory = [...history];
-                                        // newHistory.pop()
-                                        // return newHistory
-                                    });
-                                }}
-                            />
-                        )}
-                        <div className={cx('menu-body')}>{renderItems()}</div>
-                    </PopperWrapper>
-                </div>
-            )}
+            render={rederResult}
         >
             {children}
         </Tippy>
