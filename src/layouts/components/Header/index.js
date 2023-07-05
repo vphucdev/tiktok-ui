@@ -124,7 +124,7 @@ function Header() {
                     ) : (
                         <>
                             <Button text>Upload</Button>
-                            <Button primary leftIcon={<FontAwesomeIcon icon={faSignIn} />}>
+                            <Button primary iconSizeL leftIcon={<FontAwesomeIcon icon={faSignIn} />}>
                                 Log In
                             </Button>
                         </>

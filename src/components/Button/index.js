@@ -13,6 +13,7 @@ function Button({
     large = false,
     text = false,
     disabled = false,
+    iconSizeL=false,
     to,
     href,
     leftIcon,
@@ -60,7 +61,7 @@ function Button({
             })}
             {...props}
         >
-            {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
+            {leftIcon && <span className={cx('icon', {iconSizeL} )}>{leftIcon}</span>}
             <span className={cx('title')}>{children}</span>
             {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
         </Comp>
