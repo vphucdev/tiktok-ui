@@ -1,5 +1,5 @@
 import { HeaderOnly } from '~/layouts';
-import { Home, Following, Profile, Upload, Search } from '~/pages';
+import { Home, Following, Profile, Upload, Search, Explore, Live } from '~/pages';
 import config from '~/config';
 
 export const publicRoutes = [
@@ -8,8 +8,16 @@ export const publicRoutes = [
         component: Home,
     },
     {
+        path: config.routes.explore,
+        component: Explore,
+    },
+    {
         path: config.routes.following,
         component: Following,
+    },
+    {
+        path: config.routes.live,
+        component: Live,
     },
     {
         path: config.routes.profile,
