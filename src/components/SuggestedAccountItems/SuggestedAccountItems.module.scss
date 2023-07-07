@@ -1,0 +1,68 @@
+.wrapper {
+    font-family: 'IBM Plex Sans', sans-serif;
+    position: relative;
+    padding: 16px 0;
+
+    &::before {
+        position: absolute;
+        content: '';
+        height: 1px;
+        top: 0;
+        right: 8px;
+        left: 8px;
+        background-color: rgba(22, 24, 35, 0.12);
+    }
+}
+
+.label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.8rem;
+    padding: 0 8px;
+    margin-bottom: 8px;
+    color: rgba(22, 24, 35, 0.75);
+}
+
+.account-item {
+    display: flex;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.info {
+    flex: 1;
+    margin-left: 12px;
+    line-height: 1;
+}
+
+.nickname {
+    font-size: 1.6rem;
+}
+
+.name {
+    font-size: 1.2rem;
+    color: #161823bf;
+}
+
+.check {
+    margin-left: 8px;
+    color: #20d5ec;
+    font-size: 1.4rem;
+}
+
+.more-btn {
+    color: var(--primary-color);
+    padding: 0 8px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.8rem;
+    margin-top: 8px;
+    cursor: pointer;
+}
