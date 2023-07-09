@@ -10,7 +10,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 
 const cx = classNames.bind(styles);
 
-function AccountItems() {
+function AccountItems({ data }) {
     return (
         <div>
             <Tippy
@@ -20,24 +20,20 @@ function AccountItems() {
                 render={(attrs) => (
                     <div className="box" tabIndex="-1" {...attrs}>
                         <PopperWrapper>
-                            <AccountPreview />
+                            <AccountPreview  />
                         </PopperWrapper>
                     </div>
                 )}
             >
                 <div className={cx('account-item')}>
-                    <Image
-                        className={cx('avatar')}
-                        src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/2dafe1c32ed4895b6d1ef8b550cb696a~c5_100x100.jpeg?x-expires=1688871600&x-signature=STf1KVb71O7fWPNTTJ6r%2FS9F4Hg%3D"
-                        alt=""
-                    />
-    
+                    <Image className={cx('avatar')} src={data.avatar} alt="" />
+
                     <div className={cx('info')}>
                         <h4 className={cx('nickname')}>
-                            <span>nickname</span>
-                            <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />
+                            <span>{data.nickname}</span>
+                            {data.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
                         </h4>
-                        <span className={cx('name')}>Rin</span>
+                        <span className={cx('name')}>{`${data.first_name}  ${data.last_name}`}</span>
                     </div>
                 </div>
             </Tippy>
