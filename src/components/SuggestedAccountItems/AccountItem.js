@@ -20,7 +20,7 @@ function AccountItems({ data }) {
                 render={(attrs) => (
                     <div className="box" tabIndex="-1" {...attrs}>
                         <PopperWrapper>
-                            <AccountPreview  />
+                            <AccountPreview data={data} />
                         </PopperWrapper>
                     </div>
                 )}
