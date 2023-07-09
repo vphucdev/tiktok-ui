@@ -12,7 +12,7 @@ const defaultfn = () => {};
 
 function Menu({ children, items, hideOnClick = false, onChange = defaultfn }) {
     const [history, setHistory] = useState([{ data: items }]);
-    const current = history[history.length - 1];
+    const current = history[history.length - 1]; // Lay phan tu cuoi cung
 
     const renderItems = () => {
         return current.data.map((item, index) => {
