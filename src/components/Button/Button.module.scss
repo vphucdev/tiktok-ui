@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
 
-    font-family: 'ProximaNova', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1.6rem;
     font-weight: 700;
     color: var(--text-color);
@@ -87,6 +87,17 @@
 }
 
 .large {
-    padding: 14px 16px;
+    // padding: 14px 16px;
     min-width: 140px;
+    min-height: 48px;
+    width: 100%;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    border-color: currentColor;
+
+    &:hover {
+        border-color: currentColor;
+        background-color: rgba(254, 44, 85, 0.06);
+    }
 }
