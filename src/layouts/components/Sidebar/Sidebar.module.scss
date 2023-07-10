@@ -17,6 +17,7 @@
     }
 }
 
+//loginBenefits
 .loginBenefits {
     padding: 20px 8px 24px;
     position: relative;
@@ -34,4 +35,21 @@
 
 .login {
     margin-top: 20px;
+}
+
+//footer
+.footer {
+    padding-top: 16px;
+    padding-left: 8px;
+}
+
+.copyright,
+.footer-link {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    display: inline-block;
+    margin-right: 6px;
+    margin-top: 5px;
+    color: rgba(22, 24, 35, 0.5);
 }

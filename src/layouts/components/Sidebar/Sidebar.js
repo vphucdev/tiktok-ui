@@ -77,6 +77,31 @@ function Sidebar() {
                 data={suggestedUsers}
                 seeAll={seeAll}
             />
+
+            <div className={cx('footer')}>
+                <div className={cx('container')}>
+                    <a className={cx('footer-link')} target="blank" href="https://www.tiktok.com/about?lang=vi-VN">
+                        Giới thiệu
+                    </a>
+                    <a className={cx('footer-link')} target="blank" href="https://newsroom.tiktok.com/vi-vn/">
+                        Bảng tin
+                    </a>
+                    <a
+                        className={cx('footer-link')}
+                        target="blank"
+                        href="https://www.tiktok.com/about/contact?lang=vi-VN"
+                    >
+                        Liên hệ
+                    </a>
+                    <a className={cx('footer-link')} target="blank" href="https://careers.tiktok.com/">
+                        Sự nghiệp
+                    </a>
+                    <a className={cx('footer-link')} target="blank" href="https://www.bytedance.com/">
+                        ByteDance
+                    </a>
+                </div>
+                <span className={cx('copyright')}>@ 2023 TikTok</span>
+            </div>
         </aside>
     );
 }
