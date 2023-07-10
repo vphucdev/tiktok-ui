@@ -1,4 +1,33 @@
 .wrapper {
-    width: 230px;
+    width: var(--default-layout-sidebar-width);
     padding: 20px 0 26px 4px;
+    font-family: 'IBM Plex Sans', sans-serif;
+
+    position: fixed;
+    top: var(--default-layout-header-height);
+    bottom: 0;
+    overflow-y: auto;
+
+    &:not(:hover)::-webkit-scrollbar-thumb {
+        background-color: transparent;
+    }
+}
+
+.loginBenefits {
+    padding: 20px 8px 24px;
+    position: relative;
+
+    &::before {
+        position: absolute;
+        content: '';
+        height: 1px;
+        top: 0;
+        right: 8px;
+        left: 8px;
+        background-color: rgba(22, 24, 35, 0.12);
+    }
+}
+
+.login {
+    margin-top: 20px;
 }
