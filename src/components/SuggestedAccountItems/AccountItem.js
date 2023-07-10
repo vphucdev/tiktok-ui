@@ -15,6 +15,7 @@ function AccountItems({ data }) {
     return (
         <div>
             <Tippy
+                appendTo={document.querySelector('#root')}
                 interactive
                 placement="bottom"
                 delay={[800, 0]}
