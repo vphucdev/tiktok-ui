@@ -6,7 +6,8 @@ import styles from './SuggestedAccountItems.module.scss';
 
 const cx = classNames.bind(styles);
 
-function SuggestedAccountItems({ label, more, data }) {
+function SuggestedAccountItems({ label, more, less,  data, onSeeAll, seeAll }) {
+    console.log(seeAll)
     return (
         <div className={cx('wrapper')}>
             <p className={cx('label')}>{label}</p>
@@ -14,7 +15,7 @@ function SuggestedAccountItems({ label, more, data }) {
                 <AccountItem key={account.id} data={account} />
             ))}
 
-            <p className={cx('more-btn')}>{more}</p>
+            {!seeAll ? <p className={cx('more-btn')} onClick={onSeeAll}>{more}</p> : <p className={cx('more-btn')} onClick={onSeeAll}>{less}</p>}
         </div>
     );
 }
@@ -22,7 +23,8 @@ function SuggestedAccountItems({ label, more, data }) {
 SuggestedAccountItems.propTypes = {
     label: PropTypes.string.isRequired,
     more: PropTypes.string,
-    data: PropTypes.array
+    data: PropTypes.array,
+    onSeeAll: PropTypes.func,
 };
 
 export default SuggestedAccountItems;

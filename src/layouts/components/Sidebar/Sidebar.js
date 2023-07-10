@@ -16,21 +16,30 @@ import {
 } from '~/components/Icons';
 import SuggestedAccountItems from '~/components/SuggestedAccountItems/SuggestedAccountItems';
 import { getSuggested as userService } from '~/services/userService';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
     const [suggestedUsers, setSuggestedUsers] = useState([]);
-
+    const [seeAll, setSeeAll] = useState(false);
     useEffect(() => {
         const fetApi = async () => {
-            const data = await userService();
-            setSuggestedUsers(data);
+            if (!seeAll) {
+                const data = await userService({ page: 1, per_page: 5 });
+                setSuggestedUsers(data);
+            } else {
+                const data = await userService({ page: 1, per_page: 15 });
+                setSuggestedUsers(data);
+            }
         };
 
         fetApi();
         // getSuggested().then((data) => { console.log(data)})
-    }, []);
+    }, [seeAll]);
+
+    const handleViewChange = () => setSeeAll(!seeAll);
+
     return (
         <aside className={cx('wrapper')}>
             <Menu>
@@ -54,7 +63,20 @@ function Sidebar() {
                 />
                 <MenuItem to={config.routes.live} title="LIVE" icon={<LiveIcon />} iconActive={<LiveIconActive />} />
             </Menu>
-            <SuggestedAccountItems label="Các tài khoản đang follow" more="Xem thêm" data={suggestedUsers} />
+            <div className={cx('loginBenefits')}>
+                <p className={cx('benefits')}>Đăng nhập để follow các tác giả, thích video và xem bình luận</p>
+                <Button large className={cx('login')}>
+                    Đăng nhập
+                </Button>
+            </div>
+            <SuggestedAccountItems
+                label="Các tài khoản đang follow"
+                onSeeAll={handleViewChange}
+                more="Xem thêm"
+                less="Ẩn bớt"
+                data={suggestedUsers}
+                seeAll={seeAll}
+            />
         </aside>
     );
 }
