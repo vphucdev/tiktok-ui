@@ -7,7 +7,6 @@ import styles from './SuggestedAccountItems.module.scss';
 const cx = classNames.bind(styles);
 
 function SuggestedAccountItems({ label, more, less,  data, onSeeAll, seeAll }) {
-    console.log(seeAll)
     return (
         <div className={cx('wrapper')}>
             <p className={cx('label')}>{label}</p>
