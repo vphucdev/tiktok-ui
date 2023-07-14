@@ -13,7 +13,8 @@ function Button({
     large = false,
     text = false,
     disabled = false,
-    iconSizeL=false,
+    iconSizeL = false,
+    circle=false,
     to,
     href,
     leftIcon,
@@ -57,6 +58,7 @@ function Button({
                 text,
                 disabled,
                 rounded,
+                circle,
                 [className]: className,
             })}
             {...props}
