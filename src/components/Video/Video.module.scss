@@ -1,0 +1,147 @@
+.wrapper {
+    padding: 20px 0;
+    display: flex;
+}
+
+.link {
+    display: inline-block;
+    width: 52px;
+    height: 52px;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin-left: 12px;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.info {
+    position: relative;
+}
+
+.name {
+    display: flex;
+}
+
+.nickname {
+    margin-right: 5px;
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+}
+
+.check {
+    color: #20d5ec;
+    margin-left: 5px;
+    font-size: 1.4rem;
+}
+.fullname {
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 2.8rem;
+}
+
+.desc {
+    font-size: 1.6rem;
+}
+
+.music {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    margin-top: 4px;
+    margin-bottom: 12px;
+}
+
+.btn-follow {
+    position: absolute;
+    right: 0;
+    top: 8px;
+    min-width: 88px;
+    padding: 2px 0;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+}
+
+// Video
+.video {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+
+    video {
+        display: block;
+        border-radius: 8px;
+        // flex: 1;
+        object-fit: cover;
+        width: 100%;
+    }
+}
+
+.video-content {
+    margin-right: 20px;
+    position: relative;
+
+    &:hover {
+        .control-play {
+            display: block;
+        }
+        .report {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.action-btn {
+    margin-top: 8px;
+    margin-bottom: 6px;
+}
+
+.action-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.like-count {
+    color: rgba(22, 24, 35, 0.75);
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+}
+
+//controls video
+.report,
+.control-play {
+    position: absolute;
+    background-color: transparent;
+    cursor: pointer;
+    display: none;
+}
+
+.control-play {
+    bottom: 26px;
+    left: 12px;
+}
+
+.report {
+    top: 26px;
+    right: 12px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 21px;
+    color: var(--white);
+}
+
+.flag-icon {
+    margin-right: 2px;
+}
