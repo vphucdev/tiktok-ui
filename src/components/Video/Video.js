@@ -3,7 +3,8 @@ import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
 
 import Button from '~/components/Button';
 import {
@@ -23,10 +24,19 @@ const cx = classNames.bind(styles);
 
 function Video({ data }) {
     const [isPlay, setIsPlay] = useState(false);
+    const [mute, setMute] = useState(false);
     const videoRef = useRef();
-    // console.log(data.file_url);
 
-    const handleToggle = () => {
+    console.log(data);
+
+    // useEffect(() => {
+    //     videoRef.current.play();
+    //     setIsPlay(true);
+    // }, []);
+
+    
+
+    const handleTogglePlay = () => {
         if (!isPlay) {
             videoRef.current.play();
             setIsPlay(true);
@@ -35,6 +45,12 @@ function Video({ data }) {
             setIsPlay(false);
         }
     };
+    const handleToggleMute = () => {
+        if (!mute) {
+            setMute(true);
+        } else setMute(false);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <Link className={cx('link')} to={`/@${data.user.nickname}`}>
@@ -46,7 +62,7 @@ function Video({ data }) {
                     <Link className={cx('name')} to={`/@${data.user.nickname}`}>
                         <h4 className={cx('nickname')}>
                             <span>{data.user.nickname}</span>
-                            {true && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
+                            {data.user.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
                         </h4>
                         <span className={cx('fullname')}>{`${data.user.first_name}  ${data.user.last_name}`}</span>
                     </Link>
@@ -67,23 +83,24 @@ function Video({ data }) {
                             style={
                                 data.meta.video.resolution_x < data.meta.video.resolution_y
                                     ? { width: '273px' }
-                                    : { width: '463px' }
+                                    : { width: '550px' }
                             }
                         ></video>
-                        <button className={cx('control-play')} onClick={handleToggle}>
+                        <button className={cx('control-play')} onClick={handleTogglePlay}>
                             {isPlay ? <PauseIcon /> : <PlaySolidIcon />}
                         </button>
 
                         <button className={cx('report')}>
                             <FlagIcon className={cx('flag-icon')} /> Báo cáo
                         </button>
-                        {/*<button>
-                            <VolumeIcon />
+                        <button className={cx('control-sound')}>
+                            <input type="range" />
+                            <div className={cx('volume-icon')} onClick={handleToggleMute}>
+                                {mute ? <MutedIcon /> : <VolumeIcon />}
+                            </div>
                         </button>
-                        <button>
-                            <MutedIcon />
-                        </button> */}
                     </div>
+
                     <div className={cx('actions')}>
                         <div className={cx('action-inner')}>
                             <Button className={cx('action-btn')} circle>

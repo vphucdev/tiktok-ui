@@ -125,10 +125,21 @@
     position: absolute;
     background-color: transparent;
     cursor: pointer;
-    display: none;
+    // display: none;
+}
+
+.report,
+.control-play,
+.control-sound {
+    position: absolute;
+    background-color: transparent;
+    cursor: pointer;
+    // display: none;
 }
 
 .control-play {
+    width: 40px;
+    height: 40px;
     bottom: 26px;
     left: 12px;
 }
@@ -145,3 +156,20 @@
 .flag-icon {
     margin-right: 2px;
 }
+
+.control-sound {
+    display: flex;
+    flex-direction: column;
+    bottom: 26px;
+    right: 12px;
+}
+
+.volume-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+
