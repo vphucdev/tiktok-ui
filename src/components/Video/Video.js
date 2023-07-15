@@ -105,6 +105,7 @@ function Video({ data }) {
                             ref={videoRef}
                             src={data.file_url}
                             loop
+                            muted="muted"
                             style={
                                 data.meta.video.resolution_x < data.meta.video.resolution_y
                                     ? { width: '273px' }
