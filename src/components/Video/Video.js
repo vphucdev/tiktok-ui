@@ -26,9 +26,16 @@ function Video({ data, mute, volume, toggleMute, adjustVolume }) {
 
     const videoRef = useRef();
 
-   
-
-    
+    useEffect(() => {
+        if (mute) {
+            videoRef.current.volume = 0;
+        } else videoRef.current.volume = volume;
+    });
+    // play video first
+    useEffect(() => {
+        videoRef.current.play();
+        setIsPlay(true);
+    }, []);
 
     const playVideo = () => {
         videoRef.current.play();
