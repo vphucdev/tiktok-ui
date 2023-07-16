@@ -21,17 +21,14 @@ import Image from '~/components/Image';
 import styles from './Video.module.scss';
 const cx = classNames.bind(styles);
 
-function Video({ data }) {
+function Video({ data, mute, volume, toggleMute, adjustVolume }) {
     const [isPlay, setIsPlay] = useState(false);
-    const [mute, setMute] = useState(false);
+
     const videoRef = useRef();
 
-    console.log(data);
+   
 
-    // useEffect(() => {
-    //     videoRef.current.play();
-    //     setIsPlay(true);
-    // }, []);
+    
 
     const playVideo = () => {
         videoRef.current.play();
@@ -70,11 +67,6 @@ function Video({ data }) {
             pauseVideo();
         }
     };
-    const handleToggleMute = () => {
-        if (!mute) {
-            setMute(true);
-        } else setMute(false);
-    };
 
     return (
         <div className={cx('wrapper')}>
@@ -105,7 +97,7 @@ function Video({ data }) {
                             ref={videoRef}
                             src={data.file_url}
                             loop
-                            muted="muted"
+                            // muted="muted"
                             style={
                                 data.meta.video.resolution_x < data.meta.video.resolution_y
                                     ? { width: '273px' }
@@ -120,10 +112,18 @@ function Video({ data }) {
                             <FlagIcon className={cx('flag-icon')} /> Báo cáo
                         </button>
                         <button className={cx('control-sound')}>
-                            <div>
-                                <input type="range" min="0" max="100" step="1" />
+                            <div className={cx('control-volume')}>
+                                <input
+                                    className={cx('range-slider')}
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    step="2"
+                                    onChange={adjustVolume}
+                                    value={volume * 100}
+                                />
                             </div>
-                            <div className={cx('volume-icon')} onClick={handleToggleMute}>
+                            <div className={cx('volume-icon')} onClick={toggleMute}>
                                 {mute ? <MutedIcon /> : <VolumeIcon />}
                             </div>
                         </button>

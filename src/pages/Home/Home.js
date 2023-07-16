@@ -8,8 +8,14 @@ import Video from '~/components/Video/Video';
 const cx = classNames.bind(styles);
 
 function Home() {
-    const [page, setpage] = useState(1);
+    const [page, setPage] = useState(1);
     const [videos, setVideos] = useState([]);
+    const [mute, setMute] = useState(true);
+    const [volume, setVolume] = useState(0.5);
+    const [prevVolume, setPrevVolume] = useState(volume);
+
+    console.log('prevVolume :' + prevVolume);
+
     useEffect(() => {
         const fetApi = async () => {
             const result = await videoService.getVideo('for-you', page);
@@ -19,10 +25,47 @@ function Home() {
         fetApi();
     }, [page]);
 
+    useEffect(() => {
+        if (volume === 0) {
+            setMute(true);
+        }
+        if (mute) {
+            setVolume(0);
+        }
+    }, [volume, mute]);
+
+    const handleToggleMute = () => {
+        if (mute) {
+            setVolume(prevVolume);
+            setMute(false);
+        } else {
+            setPrevVolume(volume);
+            setVolume(0);
+            setMute(true);
+        }
+    };
+
+    const handleAdjustVolume = (e) => {
+        if (mute) {
+            setVolume(e.target.value / 100);
+            setPrevVolume(volume);
+            setMute(false);
+        } else {
+            setVolume(e.target.value / 100);
+            setPrevVolume(volume);
+        }
+    };
     return (
         <div className={cx('wrapper')}>
             {videos.map((video) => (
-                <Video key={video.id} data={video} />
+                <Video
+                    key={video.id}
+                    data={video}
+                    mute={mute}
+                    volume={volume}
+                    toggleMute={handleToggleMute}
+                    adjustVolume={handleAdjustVolume}
+                />
             ))}
         </div>
     );
