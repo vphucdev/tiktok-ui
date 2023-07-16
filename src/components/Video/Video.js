@@ -19,23 +19,20 @@ import {
 } from '~/components/Icons/';
 import Image from '~/components/Image';
 import styles from './Video.module.scss';
+import { useElementOnScreen } from '~/hooks/';
 const cx = classNames.bind(styles);
 
 function Video({ data, mute, volume, toggleMute, adjustVolume }) {
     const [isPlay, setIsPlay] = useState(false);
-
-    const videoRef = useRef();
+    const videoRef = useRef(null);
+    const options = { root: null, rootMargin: '0px', threshold: 1 };
+    const isVisible = useElementOnScreen(options, videoRef);
 
     useEffect(() => {
         if (mute) {
             videoRef.current.volume = 0;
         } else videoRef.current.volume = volume;
     });
-    // play video first
-    useEffect(() => {
-        videoRef.current.play();
-        setIsPlay(true);
-    }, []);
 
     const playVideo = () => {
         videoRef.current.play();
@@ -47,26 +44,25 @@ function Video({ data, mute, volume, toggleMute, adjustVolume }) {
         setIsPlay(false);
     };
 
-    function playVideoInViewport() {
-        var bounding = videoRef.current.getBoundingClientRect();
+    // function playVideoInViewport() {
+    //     var bounding = videoRef.current.getBoundingClientRect();
 
-        if (
-            bounding.top >= 0 &&
-            bounding.left >= 0 &&
-            bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
-            bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-        ) {
-            playVideo();
-        } else {
-            pauseVideo();
-        }
-    }
+    //     if (
+    //         bounding.top >= 0 &&
+    //         bounding.left >= 0 &&
+    //         bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
+    //         bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+    //         ) {
+    //             playVideo();
+    //     } else {
+    //         pauseVideo();
+    //     }
+    // }
 
-    useEffect(() => {
-        window.addEventListener('scroll', playVideoInViewport);
-        return () => window.removeEventListener('scroll', playVideoInViewport);
-    });
-
+    // useEffect(() => {
+    //     window.addEventListener('scroll', playVideoInViewport);
+    //     return () => window.removeEventListener('scroll', playVideoInViewport);
+    // });
     const handleTogglePlay = () => {
         if (!isPlay) {
             playVideo();
@@ -74,6 +70,22 @@ function Video({ data, mute, volume, toggleMute, adjustVolume }) {
             pauseVideo();
         }
     };
+
+    useEffect(() => {
+        if (isVisible) {
+            if (!isPlay) {
+                // Rewind the video and play from beginning
+                videoRef.current.currentTime = 0;
+                videoRef.current.play();
+                setIsPlay(true);
+            }
+        } else {
+            if (isPlay) {
+                videoRef.current.pause();
+                setIsPlay(false);
+            }
+        }
+    }, [isVisible, isPlay]);
 
     return (
         <div className={cx('wrapper')}>
