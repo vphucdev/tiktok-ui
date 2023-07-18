@@ -18,7 +18,7 @@
         "normalize.css": "^8.0.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-router-dom": "^6.12.1",
+        "react-router-dom": "^6.3.0",
         "react-scripts": "5.0.1",
         "web-vitals": "^2.1.4"
     },
@@ -26,10 +26,7 @@
         "start": "react-app-rewired start",
         "build": "react-app-rewired build",
         "test": "react-app-rewired test",
-        "eject": "react-scripts eject",
-        "predeploy": "react-app-rewired build",
-        "deploy": "gh-pages -d build"
-
+        "eject": "react-scripts eject"
     },
     "eslintConfig": {
         "extends": [
