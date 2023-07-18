@@ -53,7 +53,7 @@
  */
 
 /**
- * @remix-run/router v1.6.3
+ * React Router DOM v6.3.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -64,7 +64,7 @@
  */
 
 /**
- * React Router DOM v6.12.1
+ * React Router v6.3.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -74,13 +74,8 @@
  * @license MIT
  */
 
-/**
- * React Router v6.12.1
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */
+/**!
+* tippy.js v6.3.7
+* (c) 2017-2021 atomiks
+* MIT License
+*/
