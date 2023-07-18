@@ -25,7 +25,6 @@ const cx = classNames.bind(styles);
 
 function Video({ data, mute, volume, toggleMute, adjustVolume }) {
     const [isPlay, setIsPlay] = useState(false);
-    
 
     const ref = useRef();
     const { ref: inViewRef, inView } = useInView({
@@ -42,7 +41,7 @@ function Video({ data, mute, volume, toggleMute, adjustVolume }) {
         },
         [inViewRef],
     );
-    console.log(inView);
+
     useEffect(() => {
         if (mute) {
             ref.current.volume = 0;
@@ -50,8 +49,10 @@ function Video({ data, mute, volume, toggleMute, adjustVolume }) {
     });
 
     const playVideo = () => {
-        ref.current.play();
-        setIsPlay(true);
+        setTimeout(() => {
+            ref.current.play();
+            setIsPlay(true);
+        }, 200);
     };
 
     const pauseVideo = () => {
@@ -60,15 +61,15 @@ function Video({ data, mute, volume, toggleMute, adjustVolume }) {
     };
 
     // function playVideoInViewport() {
-    //     var bounding = videoRef.current.getBoundingClientRect();
+    //     var bounding = ref.current.getBoundingClientRect();
 
     //     if (
     //         bounding.top >= 0 &&
     //         bounding.left >= 0 &&
     //         bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
     //         bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-    //         ) {
-    //             playVideo();
+    //     ) {
+    //         playVideo();
     //     } else {
     //         pauseVideo();
     //     }
@@ -89,7 +90,7 @@ function Video({ data, mute, volume, toggleMute, adjustVolume }) {
                 pauseVideo();
             }
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inView]);
 
     const handleTogglePlay = () => {
