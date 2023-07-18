@@ -3,7 +3,8 @@ import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import Button from '~/components/Button';
 import {
@@ -24,23 +25,37 @@ const cx = classNames.bind(styles);
 
 function Video({ data, mute, volume, toggleMute, adjustVolume }) {
     const [isPlay, setIsPlay] = useState(false);
-    const videoRef = useRef(null);
-    const options = { root: null, rootMargin: '0px', threshold: 1 };
-    const isVisible = useElementOnScreen(options, videoRef);
+    
 
+    const ref = useRef();
+    const { ref: inViewRef, inView } = useInView({
+        /* Optional options */
+        threshold: 1,
+    });
+
+    const setRefs = useCallback(
+        (node) => {
+            // Ref's from useRef needs to have the node assigned to `current`
+            ref.current = node;
+            // Callback refs, like the one from `useInView`, is a function that takes the node as an argument
+            inViewRef(node);
+        },
+        [inViewRef],
+    );
+    console.log(inView);
     useEffect(() => {
         if (mute) {
-            videoRef.current.volume = 0;
-        } else videoRef.current.volume = volume;
+            ref.current.volume = 0;
+        } else ref.current.volume = volume;
     });
 
     const playVideo = () => {
-        videoRef.current.play();
+        ref.current.play();
         setIsPlay(true);
     };
 
     const pauseVideo = () => {
-        videoRef.current.pause();
+        ref.current.pause();
         setIsPlay(false);
     };
 
@@ -63,29 +78,27 @@ function Video({ data, mute, volume, toggleMute, adjustVolume }) {
     //     window.addEventListener('scroll', playVideoInViewport);
     //     return () => window.removeEventListener('scroll', playVideoInViewport);
     // });
-    const handleTogglePlay = () => {
-        if (!isPlay) {
-            playVideo();
-        } else {
-            pauseVideo();
-        }
-    };
 
     useEffect(() => {
-        if (isVisible) {
+        if (inView) {
             if (!isPlay) {
-                // Rewind the video and play from beginning
-                videoRef.current.currentTime = 0;
-                videoRef.current.play();
-                setIsPlay(true);
+                playVideo();
             }
         } else {
             if (isPlay) {
-                videoRef.current.pause();
-                setIsPlay(false);
+                pauseVideo();
             }
         }
-    }, [isVisible, isPlay]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [inView]);
+
+    const handleTogglePlay = () => {
+        if (isPlay) {
+            pauseVideo();
+        } else {
+            playVideo();
+        }
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -113,7 +126,7 @@ function Video({ data, mute, volume, toggleMute, adjustVolume }) {
                 <div className={cx('video')}>
                     <div className={cx('video-content')}>
                         <video
-                            ref={videoRef}
+                            ref={setRefs}
                             src={data.file_url}
                             loop
                             // muted="muted"
