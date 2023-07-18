@@ -20,7 +20,7 @@ import {
 } from '~/components/Icons/';
 import Image from '~/components/Image';
 import styles from './Video.module.scss';
-import { useElementOnScreen } from '~/hooks/';
+
 const cx = classNames.bind(styles);
 
 function Video({ data, mute, volume, toggleMute, adjustVolume }) {
