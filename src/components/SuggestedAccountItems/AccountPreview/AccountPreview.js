@@ -30,7 +30,7 @@ function AccountPreview({ data }) {
                     <strong className={cx('value')}>{data.likes_count} </strong>
                     <span className={cx('label')}>Like</span>
                 </p>
-                <p className={cx('user-bio')}>Mọi người ấn follow ☝☝☝ kênh nhé !!! 💕💕</p>
+                <p className={cx('user-bio')}>{data.bio}</p>
             </div>
         </div>
     );
