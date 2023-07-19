@@ -32,7 +32,7 @@ function Home() {
         if (mute) {
             setVolume(0);
         }
-    }, [volume, mute]);
+    }, [volume]);
 
     const handleToggleMute = () => {
         if (mute) {

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import Tippy from '@tippyjs/react/headless';
 
 import Button from '~/components/Button';
 import {
@@ -20,6 +21,8 @@ import {
 } from '~/components/Icons/';
 import Image from '~/components/Image';
 import styles from './Video.module.scss';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
+import AccountPreview from '~/components/SuggestedAccountItems/AccountPreview';
 
 const cx = classNames.bind(styles);
 
@@ -46,7 +49,7 @@ function Video({ data, mute, volume, toggleMute, adjustVolume }) {
         if (mute) {
             ref.current.volume = 0;
         } else ref.current.volume = volume;
-    });
+    }, [volume]);
 
     const playVideo = () => {
         setTimeout(() => {
@@ -103,19 +106,46 @@ function Video({ data, mute, volume, toggleMute, adjustVolume }) {
 
     return (
         <div className={cx('wrapper')}>
-            <Link className={cx('link')} to={`/@${data.user.nickname}`}>
-                <Image className={cx('avatar')} src={data.user.avatar} alt={data.user.nickname} />
-            </Link>
-
+            <Tippy
+                interactive
+                placement="bottom-start"
+                // offset={[0, 10]}
+                delay={[800, 0]}
+                render={(attrs) => (
+                    <div className="box" tabIndex="-1" {...attrs}>
+                        <PopperWrapper>
+                            <AccountPreview data={data.user} />
+                        </PopperWrapper>
+                    </div>
+                )}
+            >
+                <Link className={cx('link')} to={`/@${data.user.nickname}`}>
+                    <Image className={cx('avatar')} src={data.user.avatar} alt={data.user.nickname} />
+                </Link>
+            </Tippy>
             <div className={cx('content')}>
                 <div className={cx('info')}>
-                    <Link className={cx('name')} to={`/@${data.user.nickname}`}>
-                        <h4 className={cx('nickname')}>
-                            <span>{data.user.nickname}</span>
-                            {data.user.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
-                        </h4>
-                        <span className={cx('fullname')}>{`${data.user.first_name}  ${data.user.last_name}`}</span>
-                    </Link>
+                    <Tippy
+                        interactive
+                        placement="bottom-start"
+                        // offset={[0, 10]}
+                        delay={[800, 0]}
+                        render={(attrs) => (
+                            <div className="box" tabIndex="-1" {...attrs}>
+                                <PopperWrapper>
+                                    <AccountPreview data={data.user} />
+                                </PopperWrapper>
+                            </div>
+                        )}
+                    >
+                        <Link className={cx('name')} to={`/@${data.user.nickname}`}>
+                            <h4 className={cx('nickname')}>
+                                <span>{data.user.nickname}</span>
+                                {data.user.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
+                            </h4>
+                            <span className={cx('fullname')}>{`${data.user.first_name}  ${data.user.last_name}`}</span>
+                        </Link>
+                    </Tippy>
                     <div className={cx('desc')}>{data.description}</div>
                     <h4 className={cx('music')}>
                         <MusicIcon /> {data.music}
@@ -167,21 +197,21 @@ function Video({ data, mute, volume, toggleMute, adjustVolume }) {
                             <Button className={cx('action-btn')} circle>
                                 <HeartIcon />
                             </Button>
-                            <p className={cx('like-count')}>123</p>
+                            <p className={cx('likes-count')}>{data.likes_count}</p>
                         </div>
 
                         <div className={cx('action-inner')}>
                             <Button className={cx('action-btn')} circle>
                                 <CommentIcon className={cx('action-icon')} />
                             </Button>
-                            <p className={cx('like-count')}>123</p>
+                            <p className={cx('comments-count')}>{data.comments_count}</p>
                         </div>
 
                         <div className={cx('action-inner')}>
                             <Button className={cx('action-btn')} circle>
                                 <ShareSolidIcon className={cx('action-icon')} />
                             </Button>
-                            <p className={cx('like-count')}>123</p>
+                            <p className={cx('shares-count')}>{data.shares_count}</p>
                         </div>
                     </div>
                 </div>

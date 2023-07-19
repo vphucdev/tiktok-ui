@@ -7,6 +7,10 @@
     display: inline-block;
     width: 52px;
     height: 52px;
+
+    &:hover ~ .content .nickname {
+        text-decoration: underline;
+    }
 }
 
 .avatar {
@@ -29,6 +33,7 @@
 
 .name {
     display: flex;
+    align-items: center;
 }
 
 .nickname {
@@ -36,6 +41,10 @@
     font-weight: 700;
     font-size: 1.8rem;
     line-height: 2.4rem;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .check {
@@ -113,7 +122,9 @@
     align-items: center;
 }
 
-.like-count {
+.likes-count,
+.shares-count,
+.comments-count {
     color: rgba(22, 24, 35, 0.75);
     font-size: 1.2rem;
     line-height: 1.6rem;
@@ -165,8 +176,7 @@
     right: 12px;
 
     &:hover .control-volume {
-    display: flex;
-
+        display: flex;
     }
 }
 
@@ -182,7 +192,6 @@
     background: rgba(22, 24, 35, 0.34);
     border-radius: 32px;
     animation: fadeIn 0.1s ease-in-out;
-
 
     input[type='range'] {
         -webkit-appearance: none;
@@ -213,11 +222,13 @@
     margin-top: 4px;
 }
 
+//Tippy
+
 @keyframes fadeIn {
     from {
         opacity: 0;
-    } to {
-        opacity: 1;;
-
+    }
+    to {
+        opacity: 1;
     }
 }
