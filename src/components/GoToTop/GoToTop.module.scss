@@ -1,0 +1,23 @@
+.wrapper {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--primary-color);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: all ease-in 0.1s;
+    cursor: pointer;
+    
+    &.active {
+        bottom: 20px;
+        opacity: 1;
+    }
+
+    
+}

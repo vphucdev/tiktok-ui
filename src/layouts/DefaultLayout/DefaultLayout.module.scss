@@ -12,5 +12,6 @@
 
 .content {
     margin-left: var(--default-layout-sidebar-width);
+    position: relative;
     flex: 1;
 }
